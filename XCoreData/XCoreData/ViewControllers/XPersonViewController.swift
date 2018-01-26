@@ -15,6 +15,9 @@ class XPersonViewController: UIViewController {
     @IBOutlet weak var txtAge: UITextField!
     
     @IBOutlet weak var tblAddresslist: UITableView!
+    
+    var viewModelVoiceList:XViewModelPersonList = XViewModelPersonList()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,12 +25,20 @@ class XPersonViewController: UIViewController {
         self.title = "Single Persons"
     }
     
-    
+    func createPerson(_ firstName:String, lastName:String, age:String){
+        let model = XModelPerson()
+        model.firstName = firstName
+        model.lastName = lastName
+        model.age = Int16(age)
+        
+        self.viewModelVoiceList.archiveDownloadedPerson(personItem: model)
+    }
 
     @IBAction func actBtnAddAdress(_ sender: UIButton) {
     }
     
     @IBAction func actBtnSavePerson(_ sender: UIButton) {
-        
+        self.createPerson(txtFName.text!, lastName: txtLName.text!, age: txtAge.text!)
+        self.navigationController?.popViewController(animated: true)
     }
 }
