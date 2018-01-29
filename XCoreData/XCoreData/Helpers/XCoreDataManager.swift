@@ -103,4 +103,32 @@ class XCoreDataManager {
         
         return (tupple.status, tupple.items, tupple.error)
     }
+    
+    func fetchArchivedPersons()->[Person]? {
+        let persons = Person.fetchRecords(moc: self.managedObjectContext(), predicate: nil, sortDescriptor: nil)
+        return persons as? [Person]
+    }
+    
+    func archiveAddress(address:XModelAddress)->(status:Bool, info:Any?, error:Error?) {
+        
+        guard let addressStreet = address.street  else {
+            return (false, nil, nil)
+        }
+        
+        let voiceTupple = Address.isAddressExists(id: addressStreet, moc: self.managedObjectContext())
+        if let error = voiceTupple.error {
+            //            let msg = APIErrorType.apiMessage(key: "details", message: error.localizedDescription)
+            
+            return (false, nil, error)
+        }
+        
+        let tupple = Address.createObjectsInfo(moc: self.managedObjectContext(), info: [address])
+        
+        return (tupple.status, tupple.items, tupple.error)
+    }
+    
+    func fetchArchivedAddresses()->[Address]? {
+        let persons = Address.fetchRecords(moc: self.managedObjectContext(), predicate: nil, sortDescriptor: nil)
+        return persons as? [Address]
+    }
 }

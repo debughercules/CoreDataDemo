@@ -13,6 +13,7 @@
 		6E2109DD201A68BA00CA2C83 /* XCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6E2109DB201A68BA00CA2C83 /* XCoreData.xcdatamodeld */; };
 		6E2109DF201A68BA00CA2C83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E2109DE201A68BA00CA2C83 /* Assets.xcassets */; };
 		6E2109E2201A68BA00CA2C83 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E2109E0201A68BA00CA2C83 /* LaunchScreen.storyboard */; };
+		6E2AD40A201FA70B00F31BFC /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2AD409201FA70B00F31BFC /* UIViewController+Extension.swift */; };
 		6E57B271201B40A600CD260F /* XPersonListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E57B270201B40A600CD260F /* XPersonListViewController.swift */; };
 		6E57B273201B40BD00CD260F /* XPersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E57B272201B40BD00CD260F /* XPersonViewController.swift */; };
 		6E57B275201B40F900CD260F /* XAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E57B274201B40F900CD260F /* XAddressViewController.swift */; };
@@ -36,6 +37,7 @@
 		6E2109DE201A68BA00CA2C83 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6E2109E1201A68BA00CA2C83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6E2109E3201A68BA00CA2C83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6E2AD409201FA70B00F31BFC /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		6E57B270201B40A600CD260F /* XPersonListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XPersonListViewController.swift; sourceTree = "<group>"; };
 		6E57B272201B40BD00CD260F /* XPersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XPersonViewController.swift; sourceTree = "<group>"; };
 		6E57B274201B40F900CD260F /* XAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XAddressViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 			children = (
 				6E57B278201B474F00CD260F /* XCoreDataManager.swift */,
 				6E57B27A201B475C00CD260F /* XGlobals.swift */,
+				6E2AD409201FA70B00F31BFC /* UIViewController+Extension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E2AD40A201FA70B00F31BFC /* UIViewController+Extension.swift in Sources */,
 				6E57B27F201B4BE600CD260F /* XModelPerson.swift in Sources */,
 				6E57B271201B40A600CD260F /* XPersonListViewController.swift in Sources */,
 				6E57B295201B4D5A00CD260F /* Address+CoreDataClass.swift in Sources */,
