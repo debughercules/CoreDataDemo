@@ -17,7 +17,8 @@ class XPersonViewController: UIViewController {
     
     @IBOutlet weak var tblAddresslist: UITableView!
     
-    var viewModelPersonList:XViewModelPersonList = XViewModelPersonList()
+    var arrArchivedAddress:[Address] = [Address]()
+//    var viewModelPersonList:XViewModelPersonList = XViewModelPersonList()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +33,7 @@ class XPersonViewController: UIViewController {
         model.lastName = lastName
         model.age = Int16(age)
         
-        self.viewModelPersonList.archiveDownloadedPerson(personItem: model)
+//        self.viewModelPersonList.archiveDownloadedPerson(personItem: model)
     }
 
     @IBAction func actBtnAddAdress(_ sender: UIButton) {
@@ -74,5 +75,27 @@ class XPersonViewController: UIViewController {
         
         self.createPerson(txtFName.text!, lastName: txtLName.text!, age: txtAge.text!)
         self.navigationController?.popViewController(animated: true)
+    }
+}
+
+extension XPersonViewController : UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.arrArchivedAddress.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AddressListCell", for: indexPath) as! XAddressListTableViewCell
+        
+        cell.selectionStyle = .none
+        
+        let info = self.arrArchivedAddress[indexPath.item]
+//        cell.lblName.text = info.street ?? "Unknown"
+//        cell.lblAddress.text = info.city
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     }
 }

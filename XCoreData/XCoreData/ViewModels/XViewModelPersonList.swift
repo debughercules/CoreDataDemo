@@ -10,6 +10,15 @@ import Foundation
 
 class XViewModelPersonList {
     
+    var fullName: String?
+    var age: String?
+    
+    init(_ model: XModelPerson){
+        fullName = model.firstName! + " " + model.lastName!
+        age = String(describing: model.age!)
+    }
+    
+    
     func archiveDownloadedPerson(personItem:XModelPerson)->(status:Bool, info:Any?, error:Error?) {
         
         return XCoreDataManager.shared.archivePerson(person: personItem)
