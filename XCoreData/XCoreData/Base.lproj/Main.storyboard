@@ -41,7 +41,7 @@
         <!--Person View Controller-->
         <scene sceneID="zUV-qv-bsA">
             <objects>
-                <viewController id="pFT-Qh-C30" customClass="XPersonViewController" customModule="XCoreData" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="XPersonViewController" id="pFT-Qh-C30" customClass="XPersonViewController" customModule="XCoreData" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JiU-Y2-XHv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -134,6 +134,7 @@
                         <viewLayoutGuide key="safeArea" id="UI7-RC-a11"/>
                     </view>
                     <connections>
+                        <outlet property="btnAddAddress" destination="fYO-K7-hga" id="i0T-Qd-c7G"/>
                         <outlet property="tblAddresslist" destination="SBR-7F-ABT" id="HlE-mw-QBe"/>
                         <outlet property="txtAge" destination="uws-nN-9YW" id="6LV-Ee-neq"/>
                         <outlet property="txtFName" destination="G2K-cT-fdy" id="W1B-8M-K8x"/>
@@ -239,7 +240,6 @@
                                 <state key="normal" title="Create Person"/>
                                 <connections>
                                     <action selector="actBtnPerson:" destination="I3a-vS-JNc" eventType="touchUpInside" id="M3A-KD-p6x"/>
-                                    <segue destination="pFT-Qh-C30" kind="show" id="wvS-2I-4Nx"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -248,6 +248,7 @@
                     </view>
                     <connections>
                         <outlet property="tblPersons" destination="bwx-Pa-osj" id="osY-nG-4Sg"/>
+                        <segue destination="pFT-Qh-C30" kind="show" identifier="sXPersonViewController" id="1KZ-y9-IeQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kub-ls-9MU" userLabel="First Responder" sceneMemberID="firstResponder"/>

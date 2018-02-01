@@ -16,15 +16,40 @@ class XPersonViewController: UIViewController {
     @IBOutlet weak var txtAge: UITextField!
     
     @IBOutlet weak var tblAddresslist: UITableView!
+    @IBOutlet weak var btnAddAddress: UIButton!
+    
+    var strDataName: String?
+    var strDataAge: String?
     
     var arrArchivedAddress:[Address] = [Address]()
-//    var viewModelPersonList:XViewModelPersonList = XViewModelPersonList()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.title = "Single Persons"
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        let fullNameArr = strDataName?.components(separatedBy: " ")
+        
+        txtFName.text = fullNameArr?[0]
+        txtLName.text = fullNameArr?[1]
+        txtAge.text = strDataAge
+        
+        let btn = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(XPersonViewController.startEdit))
+        self.navigationItem.rightBarButtonItem  = btn
+        
+        if txtFName.text! == "" {
+            btnAddAddress.isHidden = true
+            tblAddresslist.isHidden = true
+        }
+    }
+    
+    @objc func startEdit(){
+        
     }
     
     func createPerson(_ firstName:String, lastName:String, age:String){

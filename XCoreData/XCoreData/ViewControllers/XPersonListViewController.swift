@@ -28,25 +28,29 @@ class XPersonListViewController: UIViewController {
     }
     
     func getData(){
-        arrViewModelArchivedPersonss = []
-        XManagerPersonList.sharedInstance.getPersons()
+        self.arrViewModelArchivedPersonss = []
         XManagerPersonList.sharedInstance.delegate = self
+        XManagerPersonList.sharedInstance.getPersons()
+        
     }
     
     @IBAction func actBtnPerson(_ sender: UIButton) {
-        
+        self.performSegue(withIdentifier: "sXPersonViewController", sender: nil)
     }
 }
 
 extension XPersonListViewController: XProtocolManagerPersonList{
     func sendData(arrayOfViewModel: Array<XViewModelPersonList>) {
         self.arrViewModelArchivedPersonss = arrayOfViewModel
+        print("1 via custom delegate: \(self.arrViewModelArchivedPersonss.count)")
         self.tblPersons.reloadData()
     }
 }
 
 extension XPersonListViewController : UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("2 via tablrvierw delegate: \(self.arrViewModelArchivedPersonss.count)")
+        print("3 via tablrvierw delegate: \(String(describing: XManagerPersonList.sharedInstance.delegate))")
         return self.arrViewModelArchivedPersonss.count
     }
     
@@ -64,6 +68,14 @@ extension XPersonListViewController : UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        DispatchQueue.main.async  {
+            if let vc = self.storyboard?.instantiateViewController(withIdentifier: "XPersonViewController") as? XPersonViewController{
+                vc.strDataName = self.arrViewModelArchivedPersonss[indexPath.row].fullName
+                vc.strDataAge = self.arrViewModelArchivedPersonss[indexPath.row].age
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
     }
 }
 
