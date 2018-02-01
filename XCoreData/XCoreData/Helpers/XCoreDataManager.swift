@@ -109,6 +109,26 @@ class XCoreDataManager {
         return persons as? [Person]
     }
     
+    func archiveAdressToPerson(address:XModelAddress)->(status:Bool, info:Any?, error:Error?) {
+        
+        guard let addressStreet = address.street  else {
+            return (false, nil, nil)
+        }
+        
+        let voiceTupple = Address.isAddressExists(id: addressStreet, moc: self.managedObjectContext())
+        if let error = voiceTupple.error {
+//        let msg = APIErrorType.apiMessage(key: "details", message: error.localizedDescription)
+            
+            return (false, nil, error)
+        }
+        
+        let tupple = Address.createObjectsInfo(moc: self.managedObjectContext(), info: [address])
+        
+        return (tupple.status, tupple.items, tupple.error)
+    }
+    
+    
+    // MARK:- Address
     func archiveAddress(address:XModelAddress)->(status:Bool, info:Any?, error:Error?) {
         
         guard let addressStreet = address.street  else {

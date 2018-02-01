@@ -31,7 +31,6 @@ class XPersonListViewController: UIViewController {
         self.arrViewModelArchivedPersonss = []
         XManagerPersonList.sharedInstance.delegate = self
         XManagerPersonList.sharedInstance.getPersons()
-        
     }
     
     @IBAction func actBtnPerson(_ sender: UIButton) {
@@ -42,15 +41,12 @@ class XPersonListViewController: UIViewController {
 extension XPersonListViewController: XProtocolManagerPersonList{
     func sendData(arrayOfViewModel: Array<XViewModelPersonList>) {
         self.arrViewModelArchivedPersonss = arrayOfViewModel
-        print("1 via custom delegate: \(self.arrViewModelArchivedPersonss.count)")
         self.tblPersons.reloadData()
     }
 }
 
 extension XPersonListViewController : UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("2 via tablrvierw delegate: \(self.arrViewModelArchivedPersonss.count)")
-        print("3 via tablrvierw delegate: \(String(describing: XManagerPersonList.sharedInstance.delegate))")
         return self.arrViewModelArchivedPersonss.count
     }
     

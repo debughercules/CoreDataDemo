@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import CoreData
+
 
 class XPersonViewController: UIViewController {
 
@@ -23,15 +23,12 @@ class XPersonViewController: UIViewController {
     
     var arrArchivedAddress:[Address] = [Address]()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.title = "Single Persons"
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
         
         let fullNameArr = strDataName?.components(separatedBy: " ")
         
@@ -39,66 +36,52 @@ class XPersonViewController: UIViewController {
         txtLName.text = fullNameArr?[1]
         txtAge.text = strDataAge
         
-        let btn = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(XPersonViewController.startEdit))
-        self.navigationItem.rightBarButtonItem  = btn
-        
         if txtFName.text! == "" {
             btnAddAddress.isHidden = true
             tblAddresslist.isHidden = true
+        }else{
+            let btn = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(XPersonViewController.startEdit))
+            self.navigationItem.rightBarButtonItem  = btn
+            
+            btnAddAddress.isEnabled = false
+            btnAddAddress.alpha = 0.4
         }
     }
     
-    @objc func startEdit(){
-        
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
     }
     
-    func createPerson(_ firstName:String, lastName:String, age:String){
-        let model = XModelPerson()
-        model.firstName = firstName
-        model.lastName = lastName
-        model.age = Int16(age)
+    @objc func startEdit(){
+        btnAddAddress.isEnabled = true
+        btnAddAddress.alpha = 1.0
         
-//        self.viewModelPersonList.archiveDownloadedPerson(personItem: model)
+        let btn = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(XPersonViewController.stopEdit))
+        self.navigationItem.rightBarButtonItem  = btn
+    }
+    
+    @objc func stopEdit(){
+        btnAddAddress.isEnabled = false
+        btnAddAddress.alpha = 0.4
+        
+        let btn = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(XPersonViewController.startEdit))
+        self.navigationItem.rightBarButtonItem  = btn
     }
 
     @IBAction func actBtnAddAdress(_ sender: UIButton) {
         
-        // Create Address
-        let entityAddress = NSEntityDescription.entity(forEntityName: "Address", in: XCoreDataManager.shared.managedObjectContext())
-        let newAddress = NSManagedObject(entity: entityAddress!, insertInto: XCoreDataManager.shared.managedObjectContext())
         
-        // Populate Address
-        newAddress.setValue("Main Street", forKey: "street")
-        newAddress.setValue("Boston", forKey: "city")
-        
-        if let arrPerson = XCoreDataManager.shared.fetchArchivedPersons() {
-            
-            // Add Address to Person
-            arrPerson[0].setValue(NSSet(object: newAddress), forKey: "addresses")
-            
-            do {
-                try arrPerson[0].managedObjectContext?.save()
-            } catch {
-                let saveError = error as NSError
-                print(saveError)
-            }
-        }
-        
-         XCoreDataManager.shared.saveContext()
     }
     
     @IBAction func actBtnSavePerson(_ sender: UIButton) {
         
         guard txtFName.text! != "", txtLName.text! != "", txtAge.text! != "" else {
-            
             self.popupAlert(title: "Message", message: "Please enter all fields.", actionTitles: ["Ok"], actions:[{action1 in
-                
                 }, nil])
-            
             return
         }
         
-        self.createPerson(txtFName.text!, lastName: txtLName.text!, age: txtAge.text!)
+        XManagerPersonList.sharedInstance.createPerson(txtFName.text!, lastName: txtLName.text!, age: txtAge.text!)
         self.navigationController?.popViewController(animated: true)
     }
 }

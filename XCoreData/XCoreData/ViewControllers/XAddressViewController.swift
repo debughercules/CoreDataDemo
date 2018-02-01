@@ -22,5 +22,13 @@ class XAddressViewController: UIViewController {
     
     @IBAction func actBtnSaveAddress(_ sender: UIButton) {
         
+        guard txtStreet.text! != "", txtCity.text! != "" else {
+            self.popupAlert(title: "Message", message: "Please enter all fields.", actionTitles: ["Ok"], actions:[{action1 in
+                }, nil])
+            return
+        }
+        
+        XManagerAddress.sharedInstance.createAddress(txtStreet.text!, city: txtCity.text!)
+        self.navigationController?.popViewController(animated: true)
     }
 }

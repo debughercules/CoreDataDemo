@@ -13,15 +13,16 @@ import CoreData
 @objc(Address)
 public class Address: NSManagedObject {
     
-    class func isAddressExists(id:String?,moc:NSManagedObjectContext)->(status:Bool,user:Address?,error:Error?) {
+    class func isAddressExists(id:String?,moc:NSManagedObjectContext)->(status:Bool,address:Address?,error:Error?) {
         
-        guard let userId = id else { return (false,nil,nil) }
+        guard let uniqueId = id else { return (false,nil,nil) }
         
-        let p = NSPredicate(format: "street = %@",userId)
-        let tuppleUsers = self.fetchRecords(moc: moc, predicate: p, sortDescriptor: nil)
+        let p = NSPredicate(format: "street = %@",uniqueId)
+        let mObjects = self.fetchRecords(moc: moc, predicate: p, sortDescriptor: nil)
         
-        if let arrUsers = tuppleUsers  {
-            return (arrUsers.count>0, arrUsers.first as? Address,nil)
+        if let arrAddress = mObjects  {
+            //Returning as a tupple
+            return (arrAddress.count>0, arrAddress.first as? Address,nil)
         }
         
         return (false,nil,nil)
@@ -29,34 +30,77 @@ public class Address: NSManagedObject {
     
     class func createObjectsInfo(moc:NSManagedObjectContext, info:Any)->(status:Bool,items:[Address]?, error:Error?) {
         
-        guard let arrUserInfo = info as? [XModelAddress] else { return (false,nil,nil) }
-        var arrUsers = [Address]()
+        guard let arrAddressInfo = info as? [XModelAddress] else { return (false,nil,nil) }
+        var arrAddresses = [Address]()
         
-        for userInfo in arrUserInfo {
+        for addressInfo in arrAddressInfo {
             do {
                 
-                var objTempUser:Address?
+                var objTempAddress:Address?
                 
                 /* If  user already exists then we have to update records */
-                let tupple = Address.isAddressExists(id: userInfo.street, moc: moc)
-                if let user = tupple.user {
-                    objTempUser = user
+                let tupple = Address.isAddressExists(id: addressInfo.street, moc: moc)
+                if let address = tupple.address {
+                    objTempAddress = address
                 }
                 else {
-                    objTempUser = NSEntityDescription.insertNewObject(forEntityName:"Address" , into: moc) as? Address
+                    objTempAddress = NSEntityDescription.insertNewObject(forEntityName:"Address" , into: moc) as? Address
                 }
                 
-                if let objUserInfo = objTempUser {
+                if let objAddressInfo = objTempAddress {
                     
-                    objUserInfo.street = userInfo.street
-                    objUserInfo.city = userInfo.street
+                    objAddressInfo.street = addressInfo.street
+                    objAddressInfo.city = addressInfo.street
                     
-                    arrUsers.append(objUserInfo)
+                    arrAddresses.append(objAddressInfo)
                 }
                 
                 try moc.save()
                 
-                return (true,arrUsers,nil)
+                return (true,arrAddresses,nil)
+            }
+            catch {
+                print(error)
+                return (true,nil,nil)
+            }
+        }
+        return (false,nil,nil)
+    }
+    
+    // MARK:- Creating Relationship
+    class func addPersonToAddresses(toPerson person:Person, moc:NSManagedObjectContext, info:Any)->(status:Bool,items:[Address]?, error:Error?) {
+        
+        guard let arrAddressInfo = info as? [XModelAddress] else { return (false,nil,nil) }
+        var arrAddresses = [Address]()
+        
+        // Add Address to Person
+//        person.setValue(NSSet(object: newAddress), forKey: "addresses")
+        
+        for addressInfo in arrAddressInfo {
+            do {
+                
+                var objTempAddress:Address?
+                
+                /* If  user already exists then we have to update records */
+                let tupple = Address.isAddressExists(id: addressInfo.street, moc: moc)
+                if let address = tupple.address {
+                    objTempAddress = address
+                }
+                else {
+                    objTempAddress = NSEntityDescription.insertNewObject(forEntityName:"Address" , into: moc) as? Address
+                }
+                
+                if let objAddressInfo = objTempAddress {
+                    
+                    objAddressInfo.street = addressInfo.street
+                    objAddressInfo.city = addressInfo.street
+                    
+                    arrAddresses.append(objAddressInfo)
+                }
+                
+                try moc.save()
+                
+                return (true,arrAddresses,nil)
             }
             catch {
                 print(error)
