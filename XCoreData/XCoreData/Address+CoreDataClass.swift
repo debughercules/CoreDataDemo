@@ -2,7 +2,7 @@
 //  Address+CoreDataClass.swift
 //  XCoreData
 //
-//  Created by Bharat Byan on 1/26/18.
+//  Created by bharat byan on 17/02/18.
 //  Copyright © 2018 Bharat Byan. All rights reserved.
 //
 //
@@ -73,9 +73,6 @@ public class Address: NSManagedObject {
         guard let arrAddressInfo = info as? [XModelAddress] else { return (false,nil,nil) }
         var arrAddresses = [Address]()
         
-        // Add Address to Person
-//        person.setValue(NSSet(object: newAddress), forKey: "addresses")
-        
         for addressInfo in arrAddressInfo {
             do {
                 
@@ -97,6 +94,9 @@ public class Address: NSManagedObject {
                     
                     arrAddresses.append(objAddressInfo)
                 }
+                
+                // Add Address to Person
+                person.setValue(NSSet(object: objTempAddress!), forKey: "personAddresses")
                 
                 try moc.save()
                 

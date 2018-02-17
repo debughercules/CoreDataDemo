@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import CoreData
 
 class XAddressViewController: UIViewController {
     
     @IBOutlet weak var txtStreet: UITextField!
     @IBOutlet weak var txtCity: UITextField!
+    
+    var strDataName: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +31,31 @@ class XAddressViewController: UIViewController {
             return
         }
         
-        XManagerAddress.sharedInstance.createAddress(txtStreet.text!, city: txtCity.text!)
+        let tupple = Person.isUserExists(id: strDataName, moc: XCoreDataManager.shared.managedObjectContext())
+        
+        let model = XModelAddress()
+        model.street = txtStreet.text!
+        model.city = txtCity.text!
+        
+        
+//        let item: Address!
+//        item.addressOfPerson = tupple.user!
+        
+        
+        
+//        XManagerPersonList.sharedInstance.addAddressWithPerson(model, person: tupple.user!)
+        
+        
+//        let personEntity = NSEntityDescription.entity(forEntityName: "Person", in: XCoreDataManager.shared.managedObjectContext())
+//
+//        let tuppleAddress = XManagerAddress.sharedInstance.createAddress(txtStreet.text!, city: txtCity.text!)
+//        let address = tuppleAddress.info as! [Address]
+//        address[0].addressOfPerson = Person(entity: personEntity!, insertInto: XCoreDataManager.shared.managedObjectContext())
+//        address[0].addressOfPerson?.firstName = strDataName
+//        XCoreDataManager.shared.saveContext()
+        
+        
+        
         self.navigationController?.popViewController(animated: true)
     }
 }

@@ -25,12 +25,12 @@
 		6E57B279201B474F00CD260F /* XCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E57B278201B474F00CD260F /* XCoreDataManager.swift */; };
 		6E57B27B201B475C00CD260F /* XGlobals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E57B27A201B475C00CD260F /* XGlobals.swift */; };
 		6E57B27F201B4BE600CD260F /* XModelPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E57B27E201B4BE600CD260F /* XModelPerson.swift */; };
-		6E57B295201B4D5A00CD260F /* Address+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E57B291201B4D5A00CD260F /* Address+CoreDataClass.swift */; };
-		6E57B296201B4D5A00CD260F /* Address+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E57B292201B4D5A00CD260F /* Address+CoreDataProperties.swift */; };
 		6E57B29A201B4E5900CD260F /* XModelAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E57B299201B4E5900CD260F /* XModelAddress.swift */; };
 		6E57B29C201B6D8900CD260F /* XViewModelPersonList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E57B29B201B6D8900CD260F /* XViewModelPersonList.swift */; };
-		6E57B2A0201B803A00CD260F /* Person+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E57B29E201B803A00CD260F /* Person+CoreDataClass.swift */; };
-		6E57B2A1201B803A00CD260F /* Person+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E57B29F201B803A00CD260F /* Person+CoreDataProperties.swift */; };
+		AC1A14FD2037A0A6008DCE39 /* Person+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1A14F92037A0A6008DCE39 /* Person+CoreDataClass.swift */; };
+		AC1A14FE2037A0A6008DCE39 /* Person+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1A14FA2037A0A6008DCE39 /* Person+CoreDataProperties.swift */; };
+		AC1A14FF2037A0A6008DCE39 /* Address+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1A14FB2037A0A6008DCE39 /* Address+CoreDataClass.swift */; };
+		AC1A15002037A0A6008DCE39 /* Address+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1A14FC2037A0A6008DCE39 /* Address+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,12 +54,12 @@
 		6E57B278201B474F00CD260F /* XCoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCoreDataManager.swift; sourceTree = "<group>"; };
 		6E57B27A201B475C00CD260F /* XGlobals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XGlobals.swift; sourceTree = "<group>"; };
 		6E57B27E201B4BE600CD260F /* XModelPerson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XModelPerson.swift; sourceTree = "<group>"; };
-		6E57B291201B4D5A00CD260F /* Address+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Address+CoreDataClass.swift"; sourceTree = "<group>"; };
-		6E57B292201B4D5A00CD260F /* Address+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Address+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		6E57B299201B4E5900CD260F /* XModelAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XModelAddress.swift; sourceTree = "<group>"; };
 		6E57B29B201B6D8900CD260F /* XViewModelPersonList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XViewModelPersonList.swift; sourceTree = "<group>"; };
-		6E57B29E201B803A00CD260F /* Person+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataClass.swift"; sourceTree = "<group>"; };
-		6E57B29F201B803A00CD260F /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		AC1A14F92037A0A6008DCE39 /* Person+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataClass.swift"; sourceTree = "<group>"; };
+		AC1A14FA2037A0A6008DCE39 /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		AC1A14FB2037A0A6008DCE39 /* Address+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Address+CoreDataClass.swift"; sourceTree = "<group>"; };
+		AC1A14FC2037A0A6008DCE39 /* Address+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Address+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,10 +92,10 @@
 		6E2109D3201A68BA00CA2C83 /* XCoreData */ = {
 			isa = PBXGroup;
 			children = (
-				6E57B29E201B803A00CD260F /* Person+CoreDataClass.swift */,
-				6E57B29F201B803A00CD260F /* Person+CoreDataProperties.swift */,
-				6E57B291201B4D5A00CD260F /* Address+CoreDataClass.swift */,
-				6E57B292201B4D5A00CD260F /* Address+CoreDataProperties.swift */,
+				AC1A14F92037A0A6008DCE39 /* Person+CoreDataClass.swift */,
+				AC1A14FA2037A0A6008DCE39 /* Person+CoreDataProperties.swift */,
+				AC1A14FB2037A0A6008DCE39 /* Address+CoreDataClass.swift */,
+				AC1A14FC2037A0A6008DCE39 /* Address+CoreDataProperties.swift */,
 				6E2109D4201A68BA00CA2C83 /* AppDelegate.swift */,
 				6E5349512022890700E8A76B /* Managers */,
 				6E53494820227F8C00E8A76B /* Views */,
@@ -245,8 +245,6 @@
 				6E4DB1982023BA23008469B7 /* XManagerAddress.swift in Sources */,
 				6E57B27F201B4BE600CD260F /* XModelPerson.swift in Sources */,
 				6E57B271201B40A600CD260F /* XPersonListViewController.swift in Sources */,
-				6E57B295201B4D5A00CD260F /* Address+CoreDataClass.swift in Sources */,
-				6E57B296201B4D5A00CD260F /* Address+CoreDataProperties.swift in Sources */,
 				6E4DB19A2023BB64008469B7 /* XViewModelAddressList.swift in Sources */,
 				6E5349502022890100E8A76B /* XManagerPersonList.swift in Sources */,
 				6E2109D7201A68BA00CA2C83 /* ViewController.swift in Sources */,
@@ -254,11 +252,13 @@
 				6E57B273201B40BD00CD260F /* XPersonViewController.swift in Sources */,
 				6E53494A2022809700E8A76B /* XPersonListTableViewCell.swift in Sources */,
 				6E57B29C201B6D8900CD260F /* XViewModelPersonList.swift in Sources */,
-				6E57B2A0201B803A00CD260F /* Person+CoreDataClass.swift in Sources */,
 				6E53494E202284BE00E8A76B /* XAddressListTableViewCell.swift in Sources */,
+				AC1A14FF2037A0A6008DCE39 /* Address+CoreDataClass.swift in Sources */,
+				AC1A14FE2037A0A6008DCE39 /* Person+CoreDataProperties.swift in Sources */,
 				6E57B279201B474F00CD260F /* XCoreDataManager.swift in Sources */,
 				6E57B29A201B4E5900CD260F /* XModelAddress.swift in Sources */,
-				6E57B2A1201B803A00CD260F /* Person+CoreDataProperties.swift in Sources */,
+				AC1A14FD2037A0A6008DCE39 /* Person+CoreDataClass.swift in Sources */,
+				AC1A15002037A0A6008DCE39 /* Address+CoreDataProperties.swift in Sources */,
 				6E57B27B201B475C00CD260F /* XGlobals.swift in Sources */,
 				6E57B275201B40F900CD260F /* XAddressViewController.swift in Sources */,
 				6E2109D5201A68BA00CA2C83 /* AppDelegate.swift in Sources */,

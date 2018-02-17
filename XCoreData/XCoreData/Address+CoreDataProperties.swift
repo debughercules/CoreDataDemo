@@ -2,7 +2,7 @@
 //  Address+CoreDataProperties.swift
 //  XCoreData
 //
-//  Created by Bharat Byan on 1/26/18.
+//  Created by bharat byan on 17/02/18.
 //  Copyright © 2018 Bharat Byan. All rights reserved.
 //
 //
@@ -19,5 +19,6 @@ extension Address {
 
     @NSManaged public var city: String?
     @NSManaged public var street: String?
+    @NSManaged public var addressOfPerson: Person?
 
 }

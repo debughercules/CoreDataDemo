@@ -2,7 +2,7 @@
 //  Person+CoreDataClass.swift
 //  XCoreData
 //
-//  Created by Bharat Byan on 1/26/18.
+//  Created by bharat byan on 17/02/18.
 //  Copyright © 2018 Bharat Byan. All rights reserved.
 //
 //
@@ -12,7 +12,7 @@ import CoreData
 
 @objc(Person)
 public class Person: NSManagedObject {
-
+    
     class func isUserExists(id:String?,moc:NSManagedObjectContext)->(status:Bool,user:Person?,error:Error?) {
         
         guard let userId = id else { return (false,nil,nil) }

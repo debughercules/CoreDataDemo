@@ -19,7 +19,19 @@ class XManagerAddress{
     
     var arrArchivedAddress:[Address] = [Address]()
     
-    func createAddress(_ street: String, city: String)
+//    func createAddressS(_ person: Person, street: String, city: String)
+//    {
+//        let model = XModelAddress()
+//        model.street = street
+//        model.city = city
+//        
+//        let tupple = XCoreDataManager.shared.archiveAddress(address: model)
+//        if tupple.status {
+//            print("Succesfully saved!")
+//        }
+//    }
+    
+    func createAddress(_ street: String, city: String)->(status:Bool, info:Any?, error:Error?)
     {
         let model = XModelAddress()
         model.street = street
@@ -29,6 +41,7 @@ class XManagerAddress{
         if tupple.status {
             print("Succesfully saved!")
         }
+        return tupple
     }
     
     func getAddresses(){

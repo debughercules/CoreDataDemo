@@ -86,6 +86,8 @@ class XCoreDataManager {
     }
     
     
+    // MARK:- Person
+    
     func archivePerson(person:XModelPerson)->(status:Bool, info:Any?, error:Error?) {
         
         guard let personName = person.firstName  else {
@@ -109,7 +111,8 @@ class XCoreDataManager {
         return persons as? [Person]
     }
     
-    func archiveAdressToPerson(address:XModelAddress)->(status:Bool, info:Any?, error:Error?) {
+    // MARK:- Relationship of Person on Address
+    func archiveAdressToPerson(_ person: Person, address:XModelAddress)->(status:Bool, info:Any?, error:Error?) {
         
         guard let addressStreet = address.street  else {
             return (false, nil, nil)
@@ -122,7 +125,7 @@ class XCoreDataManager {
             return (false, nil, error)
         }
         
-        let tupple = Address.createObjectsInfo(moc: self.managedObjectContext(), info: [address])
+        let tupple = Address.addPersonToAddresses(toPerson: person, moc: self.managedObjectContext(), info: [address])
         
         return (tupple.status, tupple.items, tupple.error)
     }
@@ -149,6 +152,17 @@ class XCoreDataManager {
     
     func fetchArchivedAddresses()->[Address]? {
         let persons = Address.fetchRecords(moc: self.managedObjectContext(), predicate: nil, sortDescriptor: nil)
+        return persons as? [Address]
+    }
+    
+    func fetchArchivedAddressesOfPerson()->[Address]? {
+        
+//        let predicate = NSPredicate(format: "ANY addresses.firstName in %@", person.firstName!)
+        
+        let predicate = NSPredicate(format: "ANY addressOfPerson.firstName in %@", "morgan")
+        
+        let persons = Address.fetchRecords(moc: self.managedObjectContext(), predicate: predicate, sortDescriptor: nil)
+        
         return persons as? [Address]
     }
 }

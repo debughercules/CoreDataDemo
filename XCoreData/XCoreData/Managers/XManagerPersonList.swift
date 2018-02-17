@@ -76,28 +76,28 @@ class XManagerPersonList{
 //            print(error)
 //        }
         
-        let addressTupple = Address.createObjectsInfo(moc: XCoreDataManager.shared.managedObjectContext(), info: [address])
+        let addressTupple = Address.addPersonToAddresses(toPerson: person, moc: XCoreDataManager.shared.managedObjectContext(), info: [address])
         if addressTupple.status {
             print("Address created succesfully")
         }
         
         // Create Address
-        let newAddress = addressTupple.items![0]
-        
-        // Populate Address
-        newAddress.setValue(address.street, forKey: "street")
-        newAddress.setValue(address.city, forKey: "city")
-        
-        // Add Address to Person
-        person.setValue(NSSet(object: newAddress), forKey: "addresses")
-        
-        do {
-            try person.managedObjectContext?.save()
-        } catch {
-            let saveError = error as NSError
-            print(saveError)
-        }
-        
-        XCoreDataManager.shared.saveContext()
+//        let newAddress = addressTupple.items![0]
+//
+//        // Populate Address
+//        newAddress.setValue(address.street, forKey: "street")
+//        newAddress.setValue(address.city, forKey: "city")
+//
+//        // Add Address to Person
+//        person.setValue(NSSet(object: newAddress), forKey: "personAddresses")
+//
+//        do {
+//            try person.managedObjectContext?.save()
+//        } catch {
+//            let saveError = error as NSError
+//            print(saveError)
+//        }
+//
+//        XCoreDataManager.shared.saveContext()
     }
 }

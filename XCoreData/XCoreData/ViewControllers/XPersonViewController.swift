@@ -17,11 +17,12 @@ class XPersonViewController: UIViewController {
     
     @IBOutlet weak var tblAddresslist: UITableView!
     @IBOutlet weak var btnAddAddress: UIButton!
+    @IBOutlet weak var btnSave: UIButton!
     
     var strDataName: String?
     var strDataAge: String?
     
-    var arrArchivedAddress:[Address] = [Address]()
+    var arrArchivedAddress:[XViewModelAddressList] = [XViewModelAddressList]()
     
     
     override func viewDidLoad() {
@@ -45,16 +46,38 @@ class XPersonViewController: UIViewController {
             
             btnAddAddress.isEnabled = false
             btnAddAddress.alpha = 0.4
+            
+            btnSave.isEnabled = false
+            btnSave.alpha = 0.4
+            
+            txtFName.isUserInteractionEnabled = false
+            txtLName.isUserInteractionEnabled = false
+            txtAge.isUserInteractionEnabled = false
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+        super.viewWillAppear(animated)
+        getData()
+        self.tblAddresslist.reloadData()
+    }
+    
+    func getData(){
+        self.arrArchivedAddress = []
+        XManagerAddress.sharedInstance.delegate = self
+        XManagerAddress.sharedInstance.getAddresses()
     }
     
     @objc func startEdit(){
         btnAddAddress.isEnabled = true
         btnAddAddress.alpha = 1.0
+        
+        btnSave.isEnabled = true
+        btnSave.alpha = 1.0
+        
+        txtFName.isUserInteractionEnabled = true
+        txtLName.isUserInteractionEnabled = true
+        txtAge.isUserInteractionEnabled = true
         
         let btn = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(XPersonViewController.stopEdit))
         self.navigationItem.rightBarButtonItem  = btn
@@ -64,12 +87,21 @@ class XPersonViewController: UIViewController {
         btnAddAddress.isEnabled = false
         btnAddAddress.alpha = 0.4
         
+        btnSave.isEnabled = false
+        btnSave.alpha = 0.4
+        
+        txtFName.isUserInteractionEnabled = false
+        txtLName.isUserInteractionEnabled = false
+        txtAge.isUserInteractionEnabled = false
+        
         let btn = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(XPersonViewController.startEdit))
         self.navigationItem.rightBarButtonItem  = btn
     }
 
     @IBAction func actBtnAddAdress(_ sender: UIButton) {
-        
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "XAddressViewController") as! XAddressViewController
+        vc.strDataName = txtFName.text!
+        self.navigationController?.pushViewController(vc, animated: true)
         
     }
     
@@ -86,6 +118,13 @@ class XPersonViewController: UIViewController {
     }
 }
 
+extension XPersonViewController: XProtocolManagerAddress{
+    func sendData(arrayOfViewModel: Array<XViewModelAddressList>) {
+        self.arrArchivedAddress = arrayOfViewModel
+        self.tblAddresslist.reloadData()
+    }
+}
+
 extension XPersonViewController : UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.arrArchivedAddress.count
@@ -98,8 +137,7 @@ extension XPersonViewController : UITableViewDelegate, UITableViewDataSource{
         cell.selectionStyle = .none
         
         let info = self.arrArchivedAddress[indexPath.item]
-//        cell.lblName.text = info.street ?? "Unknown"
-//        cell.lblAddress.text = info.city
+        cell.lblStreet.text = info.addressFull ?? "Unknown"
         
         return cell
     }
