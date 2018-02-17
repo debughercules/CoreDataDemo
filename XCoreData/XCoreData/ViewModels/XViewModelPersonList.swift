@@ -21,6 +21,6 @@ class XViewModelPersonList {
     
     func archiveDownloadedPerson(personItem:XModelPerson)->(status:Bool, info:Any?, error:Error?) {
         
-        return XCoreDataManager.shared.archivePerson(person: personItem)
+        return XManagerPerson.sharedInstance.archiveThePerson(person: personItem)
     }
 }

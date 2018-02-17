@@ -63,9 +63,13 @@ class XPersonViewController: UIViewController {
     }
     
     func getData(){
-        self.arrArchivedAddress = []
-        XManagerAddress.sharedInstance.delegate = self
-        XManagerAddress.sharedInstance.getAddresses()
+        let fullNameArr = strDataName?.components(separatedBy: " ")
+        
+        if ((fullNameArr?.count) != nil) {
+            self.arrArchivedAddress = []
+            XManagerPerson.sharedInstance.delegatePersonAdddressesList = self
+            XManagerPerson.sharedInstance.getPersonAllAddresses(personFirstName: (fullNameArr?[0])!)
+        }
     }
     
     @objc func startEdit(){
@@ -113,13 +117,14 @@ class XPersonViewController: UIViewController {
             return
         }
         
-        XManagerPersonList.sharedInstance.createPerson(txtFName.text!, lastName: txtLName.text!, age: txtAge.text!)
+        XManagerPerson.sharedInstance.createPerson(txtFName.text!, lastName: txtLName.text!, age: txtAge.text!)
         self.navigationController?.popViewController(animated: true)
     }
 }
 
-extension XPersonViewController: XProtocolManagerAddress{
-    func sendData(arrayOfViewModel: Array<XViewModelAddressList>) {
+
+extension XPersonViewController: XProtocolManagerPersonAddressList{
+    func sendPersonsAddresses(arrayOfViewModel: Array<XViewModelAddressList>) {
         self.arrArchivedAddress = arrayOfViewModel
         self.tblAddresslist.reloadData()
     }
@@ -137,7 +142,8 @@ extension XPersonViewController : UITableViewDelegate, UITableViewDataSource{
         cell.selectionStyle = .none
         
         let info = self.arrArchivedAddress[indexPath.item]
-        cell.lblStreet.text = info.addressFull ?? "Unknown"
+        cell.lblStreet.text = String("\(indexPath.item)")
+        cell.lblCity.text = info.addressFull ?? "Unknown"
         
         return cell
     }

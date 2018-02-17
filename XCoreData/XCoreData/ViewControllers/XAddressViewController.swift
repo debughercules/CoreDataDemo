@@ -31,30 +31,10 @@ class XAddressViewController: UIViewController {
             return
         }
         
-        let tupple = Person.isUserExists(id: strDataName, moc: XCoreDataManager.shared.managedObjectContext())
+        let tuppleStatus = XManagerAddress.sharedInstance.createAddress(txtStreet.text!, city: txtCity.text!)
+        let address = tuppleStatus.info as! [Address]
         
-        let model = XModelAddress()
-        model.street = txtStreet.text!
-        model.city = txtCity.text!
-        
-        
-//        let item: Address!
-//        item.addressOfPerson = tupple.user!
-        
-        
-        
-//        XManagerPersonList.sharedInstance.addAddressWithPerson(model, person: tupple.user!)
-        
-        
-//        let personEntity = NSEntityDescription.entity(forEntityName: "Person", in: XCoreDataManager.shared.managedObjectContext())
-//
-//        let tuppleAddress = XManagerAddress.sharedInstance.createAddress(txtStreet.text!, city: txtCity.text!)
-//        let address = tuppleAddress.info as! [Address]
-//        address[0].addressOfPerson = Person(entity: personEntity!, insertInto: XCoreDataManager.shared.managedObjectContext())
-//        address[0].addressOfPerson?.firstName = strDataName
-//        XCoreDataManager.shared.saveContext()
-        
-        
+        XManagerPerson.sharedInstance.addAddressToPerson(address[0], firstName: strDataName!)
         
         self.navigationController?.popViewController(animated: true)
     }

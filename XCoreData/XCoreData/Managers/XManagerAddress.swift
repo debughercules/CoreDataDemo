@@ -8,6 +8,8 @@
 
 import Foundation
 
+// MARK:- Protocols
+
 protocol XProtocolManagerAddress
 {
     func sendData(arrayOfViewModel: Array<XViewModelAddressList>)
@@ -19,17 +21,7 @@ class XManagerAddress{
     
     var arrArchivedAddress:[Address] = [Address]()
     
-//    func createAddressS(_ person: Person, street: String, city: String)
-//    {
-//        let model = XModelAddress()
-//        model.street = street
-//        model.city = city
-//        
-//        let tupple = XCoreDataManager.shared.archiveAddress(address: model)
-//        if tupple.status {
-//            print("Succesfully saved!")
-//        }
-//    }
+    // MARK:- Creating Model
     
     func createAddress(_ street: String, city: String)->(status:Bool, info:Any?, error:Error?)
     {
@@ -37,18 +29,20 @@ class XManagerAddress{
         model.street = street
         model.city = city
         
-        let tupple = XCoreDataManager.shared.archiveAddress(address: model)
+        let tupple = self.archiveTheAddress(address: model)
         if tupple.status {
             print("Succesfully saved!")
         }
         return tupple
     }
     
+    // MARK:- Delegation Sending
+    
     func getAddresses(){
         var arrayViewModel: [XViewModelAddressList] = []
         
         //Core Data Fetching implement Delegation for this
-        if let arrAddress = XCoreDataManager.shared.fetchArchivedAddresses(){
+        if let arrAddress = self.fetchAllArchivedAddresses(){
             self.arrArchivedAddress = arrAddress
         }
         
@@ -65,13 +59,39 @@ class XManagerAddress{
         delegate?.sendData(arrayOfViewModel: arrayViewModel)
     }
     
-    func updateAddress(address: Address?){
+    // MARK:- Address and model (model and Managed Object Handling)
+    func archiveTheAddress(address:XModelAddress)->(status:Bool, info:Any?, error:Error?) {
+        
+        guard let addressStreet = address.street  else {
+            return (false, nil, nil)
+        }
+        
+        let voiceTupple = Address.isAddressExists(id: addressStreet, moc: XCoreDataManager.shared.managedObjectContext())
+        if let error = voiceTupple.error {
+            //            let msg = APIErrorType.apiMessage(key: "details", message: error.localizedDescription)
+            
+            return (false, nil, error)
+        }
+        
+        let tupple = Address.createObjectsInfo(moc: XCoreDataManager.shared.managedObjectContext(), info: [address])
+        
+        return (tupple.status, tupple.items, tupple.error)
+    }
+    
+    // MARK:- Database Queries
+    
+    func fetchAllArchivedAddresses()->[Address]? {
+        let persons = Address.fetchRecords(moc: XCoreDataManager.shared.managedObjectContext(), predicate: nil, sortDescriptor: nil)
+        return persons as? [Address]
+    }
+    
+    func updateArchivedAddress(address: Address?){
         DispatchQueue.main.async {
             try? XCoreDataManager.shared.managedObjectContext().save()
         }
     }
     
-    func deleteAddress(address: Address?){
+    func deleteArchivedAddress(address: Address?){
         DispatchQueue.main.async {
             XCoreDataManager.shared.managedObjectContext().delete(address!)
         }

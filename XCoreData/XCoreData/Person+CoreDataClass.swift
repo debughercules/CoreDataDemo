@@ -13,23 +13,27 @@ import CoreData
 @objc(Person)
 public class Person: NSManagedObject {
     
-    class func isUserExists(id:String?,moc:NSManagedObjectContext)->(status:Bool,user:Person?,error:Error?) {
+    // MARK:- Handling Doubling of Entities
+   
+    class func isUserExists(id: String?, moc: NSManagedObjectContext)->(status: Bool, user: Person?, error: Error?) {
         
-        guard let userId = id else { return (false,nil,nil) }
+        guard let uniqueId = id else { return (false, nil, nil) }
         
-        let p = NSPredicate(format: "firstName = %@",userId)
-        let tuppleUsers = self.fetchRecords(moc: moc, predicate: p, sortDescriptor: nil)
+        let p = NSPredicate(format: "firstName = %@", uniqueId)
+        let tuppleRecords = self.fetchRecords(moc: moc, predicate: p, sortDescriptor: nil)
         
-        if let arrUsers = tuppleUsers  {
-            return (arrUsers.count>0, arrUsers.first as? Person,nil)
+        if let arrRecords = tuppleRecords  {
+            return (arrRecords.count>0, arrRecords.first as? Person, nil)
         }
         
         return (false,nil,nil)
     }
     
-    class func createObjectsInfo(moc:NSManagedObjectContext, info:Any)->(status:Bool,items:[Person]?, error:Error?) {
+    // MARK:- Creating Managed Object from local model
+    
+    class func createObjectsInfo(moc: NSManagedObjectContext, info: Any)->(status: Bool, items: [Person]?, error: Error?) {
         
-        guard let arrUserInfo = info as? [XModelPerson] else { return (false,nil,nil) }
+        guard let arrUserInfo = info as? [XModelPerson] else { return (false, nil, nil) }
         var arrUsers = [Person]()
         
         for userInfo in arrUserInfo {

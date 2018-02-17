@@ -29,8 +29,8 @@ class XPersonListViewController: UIViewController {
     
     func getData(){
         self.arrViewModelArchivedPersonss = []
-        XManagerPersonList.sharedInstance.delegate = self
-        XManagerPersonList.sharedInstance.getPersons()
+        XManagerPerson.sharedInstance.delegate = self
+        XManagerPerson.sharedInstance.getAllPersons()
     }
     
     @IBAction func actBtnPerson(_ sender: UIButton) {
@@ -74,4 +74,3 @@ extension XPersonListViewController : UITableViewDelegate, UITableViewDataSource
         }
     }
 }
-

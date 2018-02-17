@@ -17,6 +17,6 @@ class XViewModelAddressList{
     
     func archiveDownloadedAddress(addressItem:XModelAddress)->(status:Bool, info:Any?, error:Error?) {
         
-        return XCoreDataManager.shared.archiveAddress(address: addressItem)
+        return XManagerAddress.sharedInstance.archiveTheAddress(address: addressItem)
     }
 }

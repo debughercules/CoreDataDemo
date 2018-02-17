@@ -18,7 +18,7 @@
 		6E4DB19A2023BB64008469B7 /* XViewModelAddressList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4DB1992023BB64008469B7 /* XViewModelAddressList.swift */; };
 		6E53494A2022809700E8A76B /* XPersonListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5349492022809700E8A76B /* XPersonListTableViewCell.swift */; };
 		6E53494E202284BE00E8A76B /* XAddressListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E53494D202284BE00E8A76B /* XAddressListTableViewCell.swift */; };
-		6E5349502022890100E8A76B /* XManagerPersonList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E53494F2022890100E8A76B /* XManagerPersonList.swift */; };
+		6E5349502022890100E8A76B /* XManagerPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E53494F2022890100E8A76B /* XManagerPerson.swift */; };
 		6E57B271201B40A600CD260F /* XPersonListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E57B270201B40A600CD260F /* XPersonListViewController.swift */; };
 		6E57B273201B40BD00CD260F /* XPersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E57B272201B40BD00CD260F /* XPersonViewController.swift */; };
 		6E57B275201B40F900CD260F /* XAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E57B274201B40F900CD260F /* XAddressViewController.swift */; };
@@ -47,7 +47,7 @@
 		6E4DB1992023BB64008469B7 /* XViewModelAddressList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XViewModelAddressList.swift; sourceTree = "<group>"; };
 		6E5349492022809700E8A76B /* XPersonListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XPersonListTableViewCell.swift; sourceTree = "<group>"; };
 		6E53494D202284BE00E8A76B /* XAddressListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XAddressListTableViewCell.swift; sourceTree = "<group>"; };
-		6E53494F2022890100E8A76B /* XManagerPersonList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XManagerPersonList.swift; sourceTree = "<group>"; };
+		6E53494F2022890100E8A76B /* XManagerPerson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XManagerPerson.swift; sourceTree = "<group>"; };
 		6E57B270201B40A600CD260F /* XPersonListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XPersonListViewController.swift; sourceTree = "<group>"; };
 		6E57B272201B40BD00CD260F /* XPersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XPersonViewController.swift; sourceTree = "<group>"; };
 		6E57B274201B40F900CD260F /* XAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XAddressViewController.swift; sourceTree = "<group>"; };
@@ -124,7 +124,7 @@
 		6E5349512022890700E8A76B /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				6E53494F2022890100E8A76B /* XManagerPersonList.swift */,
+				6E53494F2022890100E8A76B /* XManagerPerson.swift */,
 				6E4DB1972023BA23008469B7 /* XManagerAddress.swift */,
 			);
 			path = Managers;
@@ -246,7 +246,7 @@
 				6E57B27F201B4BE600CD260F /* XModelPerson.swift in Sources */,
 				6E57B271201B40A600CD260F /* XPersonListViewController.swift in Sources */,
 				6E4DB19A2023BB64008469B7 /* XViewModelAddressList.swift in Sources */,
-				6E5349502022890100E8A76B /* XManagerPersonList.swift in Sources */,
+				6E5349502022890100E8A76B /* XManagerPerson.swift in Sources */,
 				6E2109D7201A68BA00CA2C83 /* ViewController.swift in Sources */,
 				6E2109DD201A68BA00CA2C83 /* XCoreData.xcdatamodeld in Sources */,
 				6E57B273201B40BD00CD260F /* XPersonViewController.swift in Sources */,
